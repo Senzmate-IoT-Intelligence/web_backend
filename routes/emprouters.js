@@ -1,0 +1,15 @@
+const express = require("express");
+const router = express.Router();
+const empcntrl = require("../Controllers/Employee");
+
+//post events
+router.post("/create", empcntrl.createemployee);
+router.get("/getall", empcntrl.allemployees);
+
+
+router.post('/show', empcntrl.show) 
+// router.post('/store', empcntrl.store)
+router.post('/update', empcntrl.update) 
+router.post('/delete', empcntrl.destroy)
+
+module.exports = router;
