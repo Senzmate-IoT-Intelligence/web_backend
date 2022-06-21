@@ -10,9 +10,9 @@ const jwt = require("jsonwebtoken");
 const userCntrl = {
   userregister: async (req, res) => {
     try {
-      const { role,username, email, mobile, password, confirmpassword } = req.body;
+      const { role,username, email, password, confirmpassword } = req.body;
 
-      if (!username || !email || !mobile || !password || !confirmpassword) {
+      if (!username || !email  || !password || !confirmpassword) {
         return res.status(400).json({ error: "please fill all the fields" });
       }
 
@@ -44,7 +44,7 @@ const userCntrl = {
         role,
         username,
         email,
-        mobile,
+      
         password: passwordHash,
         confirmpassword: passwordHash,
       });
@@ -54,9 +54,9 @@ const userCntrl = {
 
       console.log(saveUser);
 
-      //return res.status(200).json({ reguser, message: "Register succusfully!"  });
+      return res.status(200).json({  newUser, message: "Register succusfully!"  });
 
-      res.status(200).json({ msg: "Register succusfully" });
+      //res.status(200).json({ msg: "Register succusfully" });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error });
