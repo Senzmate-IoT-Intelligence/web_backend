@@ -2,35 +2,33 @@ const mongoose = require("mongoose");
 
 const employeeschema = new mongoose.Schema(
   {
-     
+    employeeID: {
+      type: String,
+    },
+
     role: {
       type: String,
-     
     },
 
-    username: {
+    name: {
       type: String,
-     
     },
 
-    deparment: {
-      type: String,
-   
-    },
-    statuss: {
+    department: {
       type: String,
     },
-    posstion: {
+    contactnumber: {
       type: String,
-      
+    },
+    occupation: {
+      type: String,
     },
     email: {
       type: String,
-    
     },
-
-    
-
+    accesspermissions: {
+      type: String,
+    },
   },
 
   {

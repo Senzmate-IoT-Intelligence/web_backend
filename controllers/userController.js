@@ -10,9 +10,9 @@ const jwt = require("jsonwebtoken");
 const userCntrl = {
   userregister: async (req, res) => {
     try {
-      const { role,username, email, password, confirmpassword } = req.body;
+      const { role, username, email, password, confirmpassword } = req.body;
 
-      if (!username || !email  || !password || !confirmpassword) {
+      if (!username || !email || !password || !confirmpassword) {
         return res.status(400).json({ error: "please fill all the fields" });
       }
 
@@ -44,7 +44,7 @@ const userCntrl = {
         role,
         username,
         email,
-      
+
         password: passwordHash,
         confirmpassword: passwordHash,
       });
@@ -54,7 +54,9 @@ const userCntrl = {
 
       console.log(saveUser);
 
-      return res.status(200).json({  newUser, message: "Register succusfully!"  });
+      return res
+        .status(200)
+        .json({ newUser, message: "Register succusfully!" });
 
       //res.status(200).json({ msg: "Register succusfully" });
     } catch (error) {
@@ -70,7 +72,7 @@ const userCntrl = {
       if (!email || !password) {
         return res
           .status(200)
-          .json({ error: "please fill email and password" });
+          .json({ error: "please fill email and password" }); /////////////////////////////////////////
       }
 
       const user = await User.findOne({ email });
@@ -90,8 +92,9 @@ const userCntrl = {
         process.env.JWT_SECRET_KEY
       );
 
-     return res.status(200).json({ token, user, message: "Login success!"  });
-      
+      //const data =
+
+      return res.status(200).json({ token, user, message: "Login success!" });
     } catch (error) {
       return res.status(500).json(error);
     }
