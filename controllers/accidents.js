@@ -16,7 +16,7 @@ const accidentCntrl = {
 
       console.log(id, day, accident_count);
 
-      return res.status(200).json({ msg: "Employee Added Successfully" });
+      return res.status(200).json({ msg: "Accident Added Successfully" });
     } catch (error) {
       console.log(error);
       return res.status(400).json({ error });

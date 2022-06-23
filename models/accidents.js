@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const accidentschema = new mongoose.Schema(
   {
     id: {
-      type: Integer,
+      type: String,
       required: true,
     },
 
@@ -12,7 +12,7 @@ const accidentschema = new mongoose.Schema(
       required: true,
     },
     accident_count: {
-      type: Integer,
+      type: String,
       required: true,
     },
   },
@@ -22,4 +22,5 @@ const accidentschema = new mongoose.Schema(
 );
 
 const accidentModel = new mongoose.model("Accident", accidentschema);
+
 module.exports = accidentModel;

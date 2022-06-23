@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const empcntrl = require("../Controllers/accidents");
+const accidentCntrl = require("../Controllers/accidents");
 
 //post events
 router.post("/create", accidentCntrl.createemployee);

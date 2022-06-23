@@ -5,6 +5,8 @@ dotenv.config({ path: "./config.env" });
 const dbconnect = require("./config/db");
 const userRoute = require("./routes/userRoute");
 const empRoute = require("./routes/emprouters");
+const customerRoute = require("./routes/customer");
+const accidentRoute = require("./routes/accidents");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -20,6 +22,8 @@ app.use(express.json());
 
 app.use("/api/user", userRoute);
 app.use("/api/employee", empRoute);
+app.use("/api/customer", customerRoute);
+app.use("/api/accident", accidentRoute);
 
 dbconnect();
 

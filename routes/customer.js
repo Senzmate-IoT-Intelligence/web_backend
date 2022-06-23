@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const empcntrl = require("../controllers/customer");
+const custCntrl = require("../controllers/customer");
 
 //post events
-router.post("/create", custcntrl.createcustomer);
-router.get("/getall", custcntrl.allcustomers);
+router.post("/create", custCntrl.createcustomer);
+router.get("/getall", custCntrl.allcustomers);
 
-router.post("/update", custcntrl.update);
-router.post("/delete", custcntrl.destroy);
+router.post("/update", custCntrl.update);
+router.post("/delete", custCntrl.destroy);
 
 module.exports = router;

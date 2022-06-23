@@ -31,5 +31,5 @@ const customerschema = new mongoose.Schema(
   }
 );
 
-const empModel = new mongoose.model("CUST", customerschema);
+const custModel = new mongoose.model("CUST", customerschema);
 module.exports = custModel;
