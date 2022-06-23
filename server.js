@@ -6,6 +6,7 @@ const dbconnect = require("./config/db");
 const userRoute = require("./routes/userRoute");
 const empRoute = require("./routes/emprouters");
 const paymentRoute = require("./routes/paymentrouters");
+const cors = require('cors');
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/user", userRoute);
 app.use("/api/employee", empRoute);

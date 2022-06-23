@@ -10,6 +10,6 @@ router.get("/getall", paymentCtrl.allPayment);
 // router.post('/show', empcntrl.show) 
 // router.post('/store', empcntrl.store)
 router.post('/update', paymentCtrl.updatePayment) 
-router.post('/delete', paymentCtrl.deletePayment)
+router.delete('/delete/:id', paymentCtrl.deletePayment)
 
 module.exports = router;

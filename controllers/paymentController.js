@@ -89,12 +89,10 @@ const paymentCtrl = {
   // delete an employee
   deletePayment: async (req, res) => {
     try {
-      let paymentID = req.body.paymentID;
-      PAYMENT.findByIdAndRemove(paymentID).then(() => {
-        res.json({
-          message: "Payment deleted successfully!",
-        });
-      });
+      const pay = await PAYMENT.findById(req.params.id);
+      await pay.remove();
+      res.send({ data : true });
+      console.log(pay);
     } catch (error) {
       res.status(400).json({ error: error });
     }
