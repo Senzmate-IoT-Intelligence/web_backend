@@ -71,20 +71,21 @@ const empCntrl = {
   //update an employee
   update: async (req, res) => {
     try {
-      let employeeID = req.body.employeeID;
+      let employeeID = req.params.id;
+      console.log(employeeID);
 
       let updatedData = {
         employeeID: req.body.employeeID,
         role: req.body.role,
         name: req.body.name,
-        department: req.statuss.deparment,
+        department: req.body.deparment,
         contactnumber: req.body.contactnumber,
         occupation: req.body.occupation,
         email: req.body.email,
         accesspermissions: req.body.accesspermissions,
       };
-      EMPLOYEE.findByIdAndupdate(employeeID, { $set: updatedData }).then(() => {
-        res.json({
+      EMPLOYEE.findByIdAndUpdate(employeeID, updatedData).then(() => {
+        return res.json({
           message: "Employee updated successfully!",
         });
       });

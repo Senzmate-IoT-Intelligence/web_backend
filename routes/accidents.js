@@ -8,7 +8,7 @@ router.get("/getall", accidentCntrl.allaccident);
 
 router.post("/show", accidentCntrl.show);
 // router.post('/store', empcntrl.store)
-router.post("/update", accidentCntrl.update);
+router.patch("/patch", accidentCntrl.update);
 router.post("/delete", accidentCntrl.destroy);
 
 module.exports = router;

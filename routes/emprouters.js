@@ -6,10 +6,9 @@ const empcntrl = require("../Controllers/Employee");
 router.post("/create", empcntrl.createemployee);
 router.get("/getall", empcntrl.allemployees);
 
-
-router.post('/show', empcntrl.show) 
+//router.post("/show", empcntrl.show);
 // router.post('/store', empcntrl.store)
-router.post('/update', empcntrl.update) 
-router.post('/delete', empcntrl.destroy)
+router.put("/update/:id", empcntrl.update);
+router.post("/delete", empcntrl.destroy);
 
 module.exports = router;
