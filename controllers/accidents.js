@@ -3,7 +3,7 @@ const router = express.Router();
 const ACCIDENT = require("../models/accidents");
 
 const accidentCntrl = {
-  createemployee: async (req, res) => {
+  createaccident: async (req, res) => {
     try {
       const { id, day, accident_count } = req.body;
 
@@ -23,7 +23,7 @@ const accidentCntrl = {
     }
   },
 
-  allemployees: async (req, res) => {
+  allaccident: async (req, res) => {
     try {
       const emps = await ACCIDENT.find();
       res.send(emps);
