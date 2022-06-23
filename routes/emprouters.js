@@ -9,6 +9,6 @@ router.get("/getall", empcntrl.allemployees);
 //router.post("/show", empcntrl.show);
 // router.post('/store', empcntrl.store)
 router.put("/update/:id", empcntrl.update);
-router.post("/delete", empcntrl.destroy);
+router.post("/delete/:id", empcntrl.destroy);
 
 module.exports = router;

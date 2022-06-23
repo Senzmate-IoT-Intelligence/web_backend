@@ -97,7 +97,7 @@ const empCntrl = {
   // delete an employee
   destroy: async (req, res) => {
     try {
-      let employeeID = req.body.employeeID;
+      let employeeID = req.params.id;
       EMPLOYEE.findByIdAndRemove(employeeID).then(() => {
         res.json({
           message: "Employee deleted successfully!",
