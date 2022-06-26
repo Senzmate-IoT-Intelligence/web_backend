@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 
 const customerschema = new mongoose.Schema(
   {
-    customerID: {
-      type: String,
-    },
-
     name: {
       type: String,
     },
@@ -23,6 +19,9 @@ const customerschema = new mongoose.Schema(
 
     insurancetype: {
       type: String,
+    },
+    numberofaccidents: {
+      type: Number,
     },
   },
 

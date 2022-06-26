@@ -7,6 +7,8 @@ const userRoute = require("./routes/userRoute");
 const empRoute = require("./routes/emprouters");
 const customerRoute = require("./routes/customer");
 const accidentRoute = require("./routes/accidents");
+const vehicleRoute = require("./routes/vehicle");
+const insurancedetailRoute = require("./routes/insurancedetail");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -14,7 +16,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST,PUT, PATCH, DELETE");
   next();
 });
 
@@ -24,6 +26,8 @@ app.use("/api/user", userRoute);
 app.use("/api/employee", empRoute);
 app.use("/api/customer", customerRoute);
 app.use("/api/accident", accidentRoute);
+app.use("/api/vehicle", vehicleRoute);
+app.use("/api/insurancedetail", insurancedetailRoute);
 
 dbconnect();
 

@@ -5,20 +5,33 @@ const CUSTOMER = require("../models/customer");
 const custCntrl = {
   createcustomer: async (req, res) => {
     try {
-      const { customerID, name, email, nic, contactnumber, insurancetype } =
-        req.body;
-
-      const emp = new CUSTOMER({
-        customerID,
+      const {
         name,
         email,
         nic,
         contactnumber,
         insurancetype,
+        numberofaccidents,
+      } = req.body;
+
+      const emp = new CUSTOMER({
+        name,
+        email,
+        nic,
+        contactnumber,
+        insurancetype,
+        numberofaccidents,
       });
       await emp.save();
 
-      console.log(customerID, name, email, nic, contactnumber, insurancetype);
+      console.log(
+        name,
+        email,
+        nic,
+        contactnumber,
+        insurancetype,
+        numberofaccidents
+      );
       return res.status(200).json({ msg: "Customer Added Successfully" });
     } catch (error) {
       console.log(error);
@@ -36,21 +49,36 @@ const custCntrl = {
     }
   },
 
+  show: async (req, res) => {
+    try {
+      let customerID = req.params.id;
+      CUSTOMER.findById(customerID).then((response) => {
+        res.json({
+          response,
+        });
+      });
+    } catch (error) {
+      res.status(400).json({ error: error });
+    }
+  },
+
   //update an employee
+
   update: async (req, res) => {
     try {
-      let customerID = req.body.customerID;
+      let customerID = req.params.id;
+      console.log(customerID);
 
       let updatedData = {
-        customerID: req.body.customerID,
         name: req.body.name,
-        email: req.statuss.email,
+        email: req.body.email,
         nic: req.body.nic,
         contactnumber: req.body.contactnumber,
         insurancetype: req.body.insurancetype,
+        numberofaccidents: req.body.insurancetype,
       };
-      CUSTOMER.findByIdAndupdate(customerID, { $set: updatedData }).then(() => {
-        res.json({
+      CUSTOMER.findByIdAndUpdate(customerID, updatedData).then(() => {
+        return res.json({
           message: "Customer updated successfully!",
         });
       });
@@ -62,7 +90,7 @@ const custCntrl = {
   // delete an employee
   destroy: async (req, res) => {
     try {
-      let customerID = req.body.customerID;
+      let customerID = req.params.id;
       CUSTOMER.findByIdAndRemove(customerID).then(() => {
         res.json({
           message: "Customer deleted successfully!",

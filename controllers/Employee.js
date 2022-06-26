@@ -4,6 +4,7 @@ const EMPLOYEE = require("../models/employee");
 
 const empCntrl = {
   createemployee: async (req, res) => {
+    console.log(req.body);
     try {
       const {
         employeeID,
@@ -49,7 +50,6 @@ const empCntrl = {
     try {
       const emps = await EMPLOYEE.find();
       res.send(emps);
-      console.log(emps);
     } catch (error) {
       res.status(400).json({ error: error });
     }
@@ -57,7 +57,7 @@ const empCntrl = {
 
   show: async (req, res) => {
     try {
-      let employeeID = req.body.employeeID;
+      let employeeID = req.params.id;
       EMPLOYEE.findById(employeeID).then((response) => {
         res.json({
           response,
@@ -70,6 +70,7 @@ const empCntrl = {
 
   //update an employee
   update: async (req, res) => {
+    console.log(req.body);
     try {
       let employeeID = req.params.id;
       console.log(employeeID);
