@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const accidentschema = new mongoose.Schema(
+const tripschema = new mongoose.Schema(
   {
     id: {
       type: String,
@@ -11,7 +11,7 @@ const accidentschema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    accident_count: {
+    trip_count: {
       type: Number,
       required: true,
     },
@@ -21,6 +21,6 @@ const accidentschema = new mongoose.Schema(
   }
 );
 
-const accidentModel = new mongoose.model("Accident", accidentschema);
+const tripModel = new mongoose.model("TRIP", tripschema);
 
-module.exports = accidentModel;
+module.exports = tripModel;

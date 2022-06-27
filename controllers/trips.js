@@ -1,77 +1,39 @@
 const express = require("express");
 const router = express.Router();
-const ACCIDENT = require("../models/accidents");
+const TRIP = require("../models/trips");
 
-const accidentCntrl = {
-  createaccident: async (req, res) => {
+const tripCntrl = {
+  creattrip: async (req, res) => {
     try {
-      const { id, day, accident_count } = req.body;
+      const { id, day, trip_count } = req.body;
 
-      const emp = new ACCIDENT({
+      const trip = new TRIP({
         id,
         day,
-        accident_count,
+        trip_count,
       });
-      await emp.save();
+      await trip.save();
 
-      console.log(id, day, accident_count);
+      console.log(id, day, trip_count);
 
-      return res.status(200).json({ msg: "Accident Added Successfully" });
+      return res.status(200).json({ msg: "Trip Added Successfully" });
     } catch (error) {
       console.log(error);
       return res.status(400).json({ error });
     }
   },
 
-  allaccident: async (req, res) => {
+  alltrip: async (req, res) => {
     try {
-      const acciddents = await ACCIDENT.find();
-      res.send(acciddents);
-      console.log(acciddents);
+      const trips = await TRIP.find();
+      res.send(trips);
+      console.log(trips);
     } catch (error) {
       res.status(400).json({ error: error });
     }
   },
 
-  /*getOrdersByDate: (req, res) => {
-    const weekAgoDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-    const aggregatorOpts = [
-      {
-        $match: {
-          createdAt: { $gte: weekAgoDate, $lt: new Date() },
-        },
-      },
-      {
-        $group: {
-          _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
-          count: { $sum: 1 },
-        },
-      },
-    ];
-
-    Order.aggregate(aggregatorOpts)
-      .then((result) => {
-        const dateArr = new Array(7)
-          .fill(0)
-          .map((_, i) => new Date(Date.now() - i * 24 * 60 * 60 * 1000))
-          .map((e) => {
-            const date = e.toISOString().split("T")[0];
-            const obj = result.find((f) => f._id === date);
-            if (obj) {
-              return obj;
-            }
-
-            return { _id: date, count: 0 };
-          });
-
-        return successResponse(res.dateArr.reverse());
-      })
-      .catch((err) => {
-        return errorResponse(res, null, null, err);
-      });
-  },
-
-  show: async (req, res) => {
+  /*show: async (req, res) => {
     try {
       let employeeID = req.body.employeeID;
       EMPLOYEE.findById(employeeID).then((response) => {
@@ -124,4 +86,4 @@ const accidentCntrl = {
   },*/
 };
 
-module.exports = accidentCntrl;
+module.exports = tripCntrl;

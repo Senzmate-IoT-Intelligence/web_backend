@@ -6,9 +6,9 @@ const accidentCntrl = require("../Controllers/accidents");
 router.post("/create", accidentCntrl.createaccident);
 router.get("/getall", accidentCntrl.allaccident);
 
-router.post("/show", accidentCntrl.show);
+//router.post("/show", accidentCntrl.show);
 // router.post('/store', empcntrl.store)
-router.patch("/patch", accidentCntrl.update);
-router.post("/delete", accidentCntrl.destroy);
+//router.patch("/patch", accidentCntrl.update);
+//router.post("/delete", accidentCntrl.destroy);
 
 module.exports = router;
