@@ -6,7 +6,11 @@ const TripDetailsCntrl = {
   createTripDetail: async (req, res) => {
     console.log(req.body);
     try {
-      const { Tripid, startingpoint, destination, date, distance } = req.body;
+      const { startingpoint, destination, date, distance } = req.body;
+
+      const lastTripData = await TripDetails.find().sort({$natural:-1}) ;
+
+      let Tripid = lastTripData == "" ? 1 : lastTripData[0].Tripid + 1
 
       const tripDetail = new TripDetails({
         Tripid,
@@ -15,9 +19,7 @@ const TripDetailsCntrl = {
         date,
         distance,
       });
-      await tripDetail.save();
-
-      console.log(tripDetail);
+       await tripDetail.save();
 
       return res.status(200).json({ msg: "Trip Detail Added Successfully" });
     } catch (error) {
@@ -28,9 +30,9 @@ const TripDetailsCntrl = {
 
   show: async (req, res) => {
     try {
-      let TripID = req.params.id;
+      //let TripID = req.params.id;
       /*   find({ customerid: vehicleID });  */
-      const TripData = TripDetails.findOne({ TripId: TripID }).then(
+      const TripData = TripDetails.find().then(
         (response) => {
           res.json({
             response,

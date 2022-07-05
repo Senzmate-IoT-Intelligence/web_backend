@@ -7,7 +7,7 @@ const {} = require("../middleware/auth");
 // router.post("/create", TripDetailsCntrl.createaccident);
 // router.get("/getall", TripDetailsCntrl.allaccident);
 
-router.post("/show", TripDetailsCntrl.show);
+router.get("/show", TripDetailsCntrl.show);
 router.post("/create", TripDetailsCntrl.createTripDetail);
 // router.post('/store', empcntrl.store)
 

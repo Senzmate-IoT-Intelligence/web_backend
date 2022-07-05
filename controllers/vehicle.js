@@ -3,6 +3,7 @@ const vehicleModel = require("../models/vehicle");
 const router = express.Router();
 const VEHICLE = require("../models/vehicle");
 
+
 const vehicleCntrl = {
   createvehicle: async (req, res) => {
     console.log(req.body);
