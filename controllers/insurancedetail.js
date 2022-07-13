@@ -6,8 +6,19 @@ const insuranceCntrl = {
   createinsurancedetail: async (req, res) => {
     console.log(req.body);
     try {
-      const { monthlypremium, purchasedate, enddate, value, customerid } =
+      const { monthlypremium, purchasedate, enddate, value, customerid, name } =
         req.body;
+
+      if (
+        !monthlypremium ||
+        !purchasedate ||
+        !enddate ||
+        !value ||
+        !customerid ||
+        !name
+      ) {
+        return res.status(400).json({ error: "please fill all the fields" });
+      }
 
       const insurance = new INSURANCE({
         monthlypremium,
@@ -15,10 +26,18 @@ const insuranceCntrl = {
         enddate,
         value,
         customerid,
+        name,
       });
       await insurance.save();
 
-      console.log(monthlypremium, purchasedate, enddate, value, customerid);
+      console.log(
+        monthlypremium,
+        purchasedate,
+        enddate,
+        value,
+        customerid,
+        name
+      );
       return res
         .status(200)
         .json({ msg: "insurancedetail Added Successfully" });
@@ -48,6 +67,34 @@ const insuranceCntrl = {
           });
         }
       );
+    } catch (error) {
+      res.status(400).json({ error: error });
+    }
+  },
+
+  update: async (req, res) => {
+    console.log(req.body);
+    try {
+      let insuranceId = req.params.id;
+      console.log(insuranceId);
+
+      let updatedData = {
+        monthlypremium: req.body.monthlypremium,
+        purchasedate: req.body.purchasedate,
+        enddate: req.body.enddate,
+        value: req.body.value,
+      };
+      const { monthlypremium, purchasedate, enddate, value } = req.body;
+
+      if (!monthlypremium || !purchasedate || !enddate || !value) {
+        return res.status(400).json({ error: "please fill all the fields" });
+      }
+
+      INSURANCE.findByIdAndUpdate(insuranceId, updatedData).then(() => {
+        return res.json({
+          message: "Insurance Detail updated successfully!",
+        });
+      });
     } catch (error) {
       res.status(400).json({ error: error });
     }

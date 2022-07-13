@@ -4,6 +4,7 @@ const empcntrl = require("../Controllers/Employee");
 
 //post events
 router.post("/create", empcntrl.createemployee);
+router.post("/check", empcntrl.checkid);
 router.get("/getall", empcntrl.allemployees);
 
 router.get("/show/:id", empcntrl.show);

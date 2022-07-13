@@ -10,6 +10,7 @@ const accidentRoute = require("./routes/accidents");
 const vehicleRoute = require("./routes/vehicle");
 const insurancedetailRoute = require("./routes/insurancedetail");
 const tripRoute = require("./routes/trips");
+const reportRoute = require("./routes/reports");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -30,6 +31,7 @@ app.use("/api/accident", accidentRoute);
 app.use("/api/vehicle", vehicleRoute);
 app.use("/api/insurancedetail", insurancedetailRoute);
 app.use("/api/trip", tripRoute);
+app.use("/api/reports", reportRoute);
 
 dbconnect();
 

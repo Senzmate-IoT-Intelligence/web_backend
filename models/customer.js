@@ -20,9 +20,6 @@ const customerschema = new mongoose.Schema(
     insurancetype: {
       type: String,
     },
-    numberofaccidents: {
-      type: Number,
-    },
   },
 
   {

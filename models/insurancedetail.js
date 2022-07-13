@@ -19,6 +19,9 @@ const insurancedetailchema = new mongoose.Schema(
     customerid: {
       type: String,
     },
+    name: {
+      type: String,
+    },
   },
 
   {

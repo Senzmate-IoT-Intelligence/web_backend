@@ -13,7 +13,32 @@ const vehicleCntrl = {
         chassisnumber,
         value,
         customerid,
+        name,
       } = req.body;
+
+      if (
+        !vehiclenumber ||
+        !manufacturedyear ||
+        !chassisnumber ||
+        !value ||
+        !customerid ||
+        !name
+      ) {
+        return res.status(400).json({ error: "please fill all the fields" });
+      }
+
+      if (!validateVehiclenumberpalte(vehiclenumber)) {
+        return res.status(400).json({
+          error: "invalid Sri Lanka Vehicle plate number check again!",
+        });
+      }
+
+      if (!validateVIN(chassisnumber)) {
+        return res.status(400).json({
+          error:
+            "invalid VIN check again!-VIN should have only A-Z, 0-9 characters, but not I, O, or Q Last 6 characters of VIN should be a number VIN should be 17 characters long ",
+        });
+      }
 
       const vehi = new VEHICLE({
         vehiclenumber,
@@ -21,6 +46,7 @@ const vehicleCntrl = {
         chassisnumber,
         value,
         customerid,
+        name,
       });
       await vehi.save();
 
@@ -29,7 +55,8 @@ const vehicleCntrl = {
         manufacturedyear,
         chassisnumber,
         value,
-        customerid
+        customerid,
+        name
       );
 
       return res.status(200).json({ msg: "Vehicle Detail Added Successfully" });
@@ -77,7 +104,27 @@ const vehicleCntrl = {
         Chassisnumber: req.body.chassisnumber,
         Value: req.body.value,
       };
-      EMPLOYEE.findByIdAndUpdate(vehicleID, updatedData).then(() => {
+
+      const { vehiclenumber, manufacturedyear, chassisnumber, value } =
+        req.body;
+
+      if (!vehiclenumber || !manufacturedyear || !chassisnumber || !value) {
+        return res.status(400).json({ error: "please fill all the fields" });
+      }
+
+      if (!validateVehiclenumberpalte(vehiclenumber)) {
+        return res.status(400).json({
+          error: "invalid Sri Lanka Vehicle plate number check again!",
+        });
+      }
+
+      if (!validateVIN(chassisnumber)) {
+        return res.status(400).json({
+          error:
+            "invalid VIN check again!-VIN should have only A-Z, 0-9 characters, but not I, O, or Q Last 6 characters of VIN should be a number VIN should be 17 characters long ",
+        });
+      }
+      VEHICLE.findByIdAndUpdate(vehicleID, updatedData).then(() => {
         return res.json({
           message: "Vehicle Detail updated successfully!",
         });
@@ -101,5 +148,16 @@ const vehicleCntrl = {
     }
   },
 };
+
+function validateVehiclenumberpalte(vehiclenumber) {
+  const re = /^(?:[a-zA-Z]{1,3}|(?!0*-)[0-9]{1,3})-[0-9]{4}(?<!0{4})$/;
+  return re.test(vehiclenumber);
+}
+
+function validateVIN(chassisnumber) {
+  const re =
+    /^[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{2}\d{6}$/;
+  return re.test(chassisnumber);
+}
 
 module.exports = vehicleCntrl;

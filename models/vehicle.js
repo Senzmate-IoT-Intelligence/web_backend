@@ -21,6 +21,9 @@ const vehicleschema = new mongoose.Schema(
     customerid: {
       type: String,
     },
+    name: {
+      type: String,
+    },
   },
 
   {
